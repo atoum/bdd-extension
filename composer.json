@@ -1,0 +1,29 @@
+{
+    "name": "atoum/visibility-extension",
+    "type": "library",
+    "description": "atoum extension to loosen method visibility",
+    "keywords": ["TDD","atoum","test","unit testing","visibility"],
+    "homepage": "http://www.atoum.org",
+    "license": "BSD",
+    "authors": [
+        {
+            "name": "jubianchi",
+            "email": "contact@jubianchi.fr"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/jubianchi/atoum"
+        }
+    ],
+    "require-dev": {
+        "atoum/atoum": "dev-extension"
+    },
+    "autoload": {
+        "psr-4": {
+            "mageekguy\\atoum\\bdd\\": "classes"
+        },
+        "files": ["autoloader.php"]
+    }
+}
