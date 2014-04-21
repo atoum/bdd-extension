@@ -191,12 +191,9 @@ As you can see, `shouldReturn` lets you assert on invoked method return value. A
 same:
 
 ```php
-$this->invoking->format(__FUNCTION__)->on($formatter)
-    ->shouldReturn('...');
-$this->invoking->format(__FUNCTION__)->on($formatter)
-    ->returns('...');
-$this->invoking->format(__FUNCTION__)->on($formatter)
-    ->should->return('...');
+$this->invoking->format(__FUNCTION__)->on($formatter)->shouldReturn('...');
+$this->invoking->format(__FUNCTION__)->on($formatter)->returns('...');
+$this->invoking->format(__FUNCTION__)->on($formatter)->should->return('...');
 ```
 
 Calling `shouldReturn` with a parameter will fallback on the `atoum\asserters\variable::isEqual` assertion which is the
@@ -210,6 +207,7 @@ $this->invoking->format(__FUNCTION__)->on($formatter)->shouldReturn->string->isE
 
 Asserting on exception is quite simple and similar to asserting on returned values:
 
+```php
 <?php
 namespace jubianchi\example\specs;
 
@@ -233,12 +231,9 @@ class formatter extends atoum\spec
 As for `shouldReturn`, `shouldThrow` provides some alternative synatxes:
 
 ```php
-$this->invoking->format(__FUNCTION__)->on($formatter)
-    ->shouldThrow('exception');
-$this->invoking->format(__FUNCTION__)->on($formatter)
-    ->throws('exception');
-$this->invoking->format(__FUNCTION__)->on($formatter)
-    ->should->throw('exception');
+$this->invoking->format(__FUNCTION__)->on($formatter)->shouldThrow('exception');
+$this->invoking->format(__FUNCTION__)->on($formatter)->throws('exception');
+$this->invoking->format(__FUNCTION__)->on($formatter)->should->throw('exception');
 ```
 
 Calling `shouldThrow` this way will fallback on `atoum\asserters\exception::isInstanceOf`, if you don't want to check
@@ -253,8 +248,6 @@ $this->invoking->format(__FUNCTION__)->on($formatter)->should->throw;
 Of course, you can also check the exception message using regular assertions:
 
 ```php
-$this->invoking->format(__FUNCTION__)->on($formatter)->shouldThrow
-    ->hasMessage('...');
-$this->invoking->format(__FUNCTION__)->on($formatter)
-    ->throws('invalidArgumentException')->hasMessage('...');
+$this->invoking->format(__FUNCTION__)->on($formatter)->shouldThrow->hasMessage('...');
+$this->invoking->format(__FUNCTION__)->on($formatter)->throws('invalidArgumentException')->hasMessage('...');
 ```
