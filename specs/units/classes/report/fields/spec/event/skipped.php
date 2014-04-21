@@ -7,10 +7,11 @@ use
 	mageekguy\atoum\bdd,
 	mageekguy\atoum\report\fields\test,
 	mageekguy\atoum\report\fields\runner,
+	mageekguy\atoum\bdd\specs,
 	mageekguy\atoum\bdd\report\fields\spec\event\skipped as testedClass
 ;
 
-class skipped extends atoum\spec
+class skipped extends specs\units
 {
 	public function should_be_a_spec_field()
 	{

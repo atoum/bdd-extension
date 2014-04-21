@@ -7,10 +7,11 @@ use
 	mageekguy\atoum\bdd,
 	mageekguy\atoum\report\fields\test,
 	mageekguy\atoum\report\fields\runner,
+	mageekguy\atoum\bdd\specs,
 	mageekguy\atoum\bdd\report\fields\spec\event\fails\exception as testedClass
 ;
 
-class exception extends atoum\spec
+class exception extends specs\units
 {
 	public function should_be_a_spec_fail_field()
 	{

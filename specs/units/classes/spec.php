@@ -4,10 +4,11 @@ namespace mageekguy\atoum\bdd\specs\units;
 
 use
 	mageekguy\atoum,
+	mageekguy\atoum\bdd\specs,
 	mageekguy\atoum\bdd\spec as testedClass
 ;
 
-class spec extends atoum\spec
+class spec extends specs\units
 {
 	public function should_be_a_test()
 	{

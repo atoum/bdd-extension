@@ -7,10 +7,11 @@ use
 	mageekguy\atoum\bdd,
 	mageekguy\atoum\report\fields\test,
 	mageekguy\atoum\report\fields\runner,
+	mageekguy\atoum\bdd\specs,
 	mageekguy\atoum\bdd\report\fields\runner\result\cli as testedClass
 ;
 
-class cli extends atoum\spec
+class cli extends specs\units
 {
 	public function should_be_a_runner_field()
 	{

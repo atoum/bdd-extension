@@ -7,10 +7,11 @@ use
 	mageekguy\atoum\bdd,
 	mageekguy\atoum\report\fields\test,
 	mageekguy\atoum\report\fields\runner,
+	mageekguy\atoum\bdd\specs,
 	mageekguy\atoum\bdd\report\fields\spec\event\fails\failure as testedClass
 ;
 
-class failure extends atoum\spec
+class failure extends specs\units
 {
 	public function should_be_a_spec_fail_field()
 	{
@@ -33,7 +34,10 @@ class failure extends atoum\spec
 					array(
 						'class' => get_class($test),
 						'method' => $currentMethod,
-						'fail' => $message = uniqid()
+						'fail' => $message = uniqid(),
+						'line' => $line = rand(1, PHP_INT_MAX),
+						'file' => $file = uniqid(),
+						'asserter' => $asserter = uniqid(),
 					)
 				),
 				$this->calling($test)->getScore = $score
@@ -44,7 +48,7 @@ class failure extends atoum\spec
 			)
 			->then
 				->invoking->__toString->on($field)
-					->shouldReturn->string->isEqualTo('  ✘  ' . $currentMethod . PHP_EOL . '     Failure: ' . $message . PHP_EOL)
+					->shouldReturn->string->isEqualTo('  ✘  ' . $currentMethod . PHP_EOL . '     Failure: ' . $message . PHP_EOL . '     File: ' . $file . PHP_EOL . '     Line: ' . $line . PHP_EOL . '     Asserter: ' . $asserter . PHP_EOL)
 		;
 	}
 
@@ -59,7 +63,10 @@ class failure extends atoum\spec
 					array(
 						'class' => get_class($test),
 						'method' => $currentMethod,
-						'fail' => $message = uniqid()
+						'fail' => $message = uniqid(),
+						'line' => $line = rand(1, PHP_INT_MAX),
+						'file' => $file = uniqid(),
+						'asserter' => $asserter = uniqid(),
 					)
 				),
 				$this->calling($test)->getScore = $score,
@@ -75,6 +82,9 @@ class failure extends atoum\spec
 				->mock($colorizer)
 					->call('colorize')->withArguments($currentMethod)->once()
 					->call('colorize')->withArguments('Failure: ')->once()
+					->call('colorize')->withArguments('File: ')->once()
+					->call('colorize')->withArguments('Line: ')->once()
+					->call('colorize')->withArguments('Asserter: ')->once()
 				->mock($prompt)
 					->call('__toString')->once()
 		;

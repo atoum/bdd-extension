@@ -4,10 +4,11 @@ namespace mageekguy\atoum\bdd\specs\units\asserters;
 
 use
 	mageekguy\atoum,
+	mageekguy\atoum\bdd\specs,
 	mageekguy\atoum\bdd\asserters\invoking as testedClass
 ;
 
-class invoking extends atoum\spec
+class invoking extends specs\units
 {
 	public function should_be_an_atoum_asserter()
 	{
