@@ -9,5 +9,8 @@ php:
 notifications:
   irc: "irc.freenode.org#jubianchifr"
 
+before_script:
+  - composer install
+
 script:
   - vendor/bin/atoum --test-ext
