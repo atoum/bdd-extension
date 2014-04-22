@@ -12,11 +12,16 @@ Install extension using [composer](https://getcomposer.org):
         {
             "type": "vcs",
             "url": "https://github.com/jubianchi/atoum"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/jubianchi/atoum-bdd-extension"
         }
     ],
     "require-dev": {
-        "atoum/atoum": "dev-extension"
-    }
+        "atoum/atoum": "dev-extension",
+        "atoum/bdd-extension": "dev-master"
+    },
 }
 
 ```
