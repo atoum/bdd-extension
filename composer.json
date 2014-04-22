@@ -1,8 +1,8 @@
 {
-    "name": "atoum/visibility-extension",
+    "name": "atoum/bdd-extension",
     "type": "library",
-    "description": "atoum extension to loosen method visibility",
-    "keywords": ["TDD","atoum","test","unit testing","visibility"],
+    "description": "atoum extension to writes specs",
+    "keywords": ["TDD","atoum","test","unit testing","spec","bdd"],
     "homepage": "http://www.atoum.org",
     "license": "BSD",
     "authors": [
