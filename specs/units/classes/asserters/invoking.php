@@ -4,8 +4,7 @@ namespace mageekguy\atoum\bdd\specs\units\asserters;
 
 use
 	mageekguy\atoum,
-	mageekguy\atoum\bdd\specs,
-	mageekguy\atoum\bdd\asserters\invoking as testedClass
+	mageekguy\atoum\bdd\specs
 ;
 
 class invoking extends specs\units
@@ -17,7 +16,7 @@ class invoking extends specs\units
 
 	public function should_construct()
 	{
-		$this->object(new testedClass());
+		$this->newTestedInstance;
 	}
 
 	public function should_use_provided_test()
@@ -27,13 +26,13 @@ class invoking extends specs\units
 				$test = new \mock\mageekguy\atoum\test(),
 				$this->calling($test)->getTestedClassName = 'mageekguy\atoum\test'
 			)
-			->if($asserter = new testedClass())
+			->if($this->newTestedInstance)
 			->then
-				->invoking('getTest')->on($asserter)
+				->invoking('getTest')
 					->shouldReturn->variable->isNull()
-				->invoking('setWithTest', $test)->on($asserter)
-					->shouldReturn->object->isIdenticalTo($asserter)
-				->invoking('getTest')->on($asserter)
+				->invoking('setWithTest', $test)
+					->shouldReturn->object->isTestedInstance
+				->invoking('getTest')
 					->shouldReturn->object->isIdenticalTo($test)
 		;
 	}
@@ -47,11 +46,11 @@ class invoking extends specs\units
 				$this->calling($test)->getTestedClassName = $testedClassName = 'mageekguy\atoum\test'
 			)
 			->if(
-				$asserter = new testedClass(null, $phpClass),
-				$asserter->setWithTest($test)
+				$this->newTestedInstance(null, $phpClass),
+				$this->testedInstance->setWithTest($test)
 			)
 			->then
-				->invoking('setMethod', $method = uniqid())->on($asserter)
+				->invoking('setMethod', $method = uniqid())
 					->shouldThrow('mageekguy\atoum\asserter\exception')
 						->hasMessage(sprintf('%s::%s() does not exist', $testedClassName, $method))
 					->mock($phpClass)
@@ -59,8 +58,8 @@ class invoking extends specs\units
 
 			->if($this->calling($phpClass)->hasMethod = $phpClass)
 			->then
-				->invoking('setMethod', $method)->on($asserter)
-					->shouldReturn->object->isIdenticalTo($asserter)
+				->invoking('setMethod', $method)
+					->shouldReturn->object->isTestedInstance
 		;
 	}
 
@@ -78,16 +77,16 @@ class invoking extends specs\units
 				$this->calling($test)->getTestedClassName = $testedClassName = get_class($object)
 			)
 			->if(
-				$asserter = new testedClass(null, $phpClass),
-				$asserter
+				$this->newTestedInstance(null, $phpClass),
+				$this->testedInstance
 					->setWithTest($test)
 					->setMethod($method)
 			)
 			->then
-				->invoking('setInstance', $object)->on($asserter)
-					->shouldReturn->object->isIdenticalTo($asserter)
-				->invoking('returns')->on($asserter)
-					->shouldReturn->object->isIdenticalTo($asserter)
+				->invoking('setInstance', $object)
+					->shouldReturn->object->isTestedInstance
+				->invoking('returns')
+					->shouldReturn->object->isTestedInstance
 					->mock($object)
 						->call($method)->once()
 		;
@@ -107,19 +106,19 @@ class invoking extends specs\units
 				$this->calling($test)->getTestedClassName = $testedClassName = get_class($object)
 			)
 			->if(
-				$asserter = new testedClass(null, $phpClass),
-				$asserter
+				$this->newTestedInstance(null, $phpClass),
+				$this->testedInstance
 					->setWithTest($test)
 					->setMethod($method)
 			)
 			->then
-				->invoking('setInstance', $object)->on($asserter)
-					->shouldReturn->object->isIdenticalTo($asserter)
-				->invoking('returns', $value)->on($asserter)
-					->shouldReturn->object->isIdenticalTo($asserter)
+				->invoking('setInstance', $object)
+					->shouldReturn->object->isTestedInstance
+				->invoking('returns', $value)
+					->shouldReturn->object->isTestedInstance
 					->mock($object)
 						->call($method)->once()
-				->invoking('returns', uniqid())->on($asserter)
+				->invoking('returns', uniqid())
 					->shouldThrow('mageekguy\atoum\asserter\exception')
 		;
 	}
@@ -139,15 +138,15 @@ class invoking extends specs\units
 				$exceptionAsserter = new atoum\asserters\exception()
 			)
 			->if(
-				$asserter = new testedClass(null, $phpClass),
-				$asserter
+				$this->newTestedInstance(null, $phpClass),
+				$this->testedInstance
 					->setWithTest($test)
 					->setMethod($method)
 			)
 			->then
-				->invoking('setInstance', $object)->on($asserter)
-					->shouldReturn->object->isIdenticalTo($asserter)
-				->invoking('throws')->on($asserter)
+				->invoking('setInstance', $object)
+					->shouldReturn->object->isTestedInstance
+				->invoking('throws')
 					->shouldReturn->object->isEqualTo($exceptionAsserter->setWith($exception))
 					->mock($object)
 						->call($method)->once();

@@ -7,8 +7,7 @@ use
 	mageekguy\atoum\bdd,
 	mageekguy\atoum\report\fields\test,
 	mageekguy\atoum\report\fields\runner,
-	mageekguy\atoum\bdd\specs,
-	mock\mageekguy\atoum\bdd\report\fields\spec\event as testedClass
+	mageekguy\atoum\bdd\specs
 ;
 
 class event extends specs\units
@@ -26,11 +25,11 @@ class event extends specs\units
 				$this->calling($test)->getCurrentMethod = $firstPart = __FUNCTION__
 			)
 			->if(
-				$field = new testedClass(),
-				$field->handleEvent(atoum\test::runStart, $test)
+				$this->newTestedInstance,
+				$this->testedInstance->handleEvent(atoum\test::runStart, $test)
 			)
 			->then
-				->invoking->getCurrentExample->on($field)
+				->invoking->getCurrentExample
 					->shouldReturn->string->isEqualTo(implode(' ', explode('_', __FUNCTION__)))
 		;
 	}
@@ -43,11 +42,11 @@ class event extends specs\units
 				$this->calling($test)->getCurrentMethod = $firstPart = __FUNCTION__
 			)
 			->if(
-				$field = new testedClass(),
-				$field->handleEvent(atoum\test::runStart, $test)
+				$this->newTestedInstance,
+				$this->testedInstance->handleEvent(atoum\test::runStart, $test)
 			)
 			->then
-				->invoking->getCurrentExample->on($field)
+				->invoking->getCurrentExample
 					->shouldReturn->string->isEqualTo(implode(' ', array_map('strtolower', preg_split('/(?=[A-Z])/', __FUNCTION__))))
 		;
 	}

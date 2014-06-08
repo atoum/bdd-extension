@@ -7,8 +7,7 @@ use
 	mageekguy\atoum\bdd,
 	mageekguy\atoum\report\fields\test,
 	mageekguy\atoum\report\fields\runner,
-	mageekguy\atoum\bdd\specs,
-	mageekguy\atoum\bdd\report\fields\spec\run\cli as testedClass
+	mageekguy\atoum\bdd\specs
 ;
 
 class cli extends specs\units
@@ -20,7 +19,7 @@ class cli extends specs\units
 
 	public function should_construct()
 	{
-		$this->object(new testedClass());
+		$this->newTestedInstance;
 	}
 
 	public function should_display_tested_class_name()
@@ -31,11 +30,11 @@ class cli extends specs\units
 				$this->calling($test)->getTestedClassName = $testedClassName = uniqid()
 			)
 			->if(
-				$field = new testedClass(),
-				$field->handleEvent(atoum\test::runStart, $test)
+				$this->newTestedInstance,
+				$this->testedInstance->handleEvent(atoum\test::runStart, $test)
 			)
 			->then
-				->invoking->__toString->on($field)
+				->invoking->__toString
 					->shouldReturn->string->isEqualTo($testedClassName . '...' . PHP_EOL)
 		;
 	}
@@ -50,13 +49,13 @@ class cli extends specs\units
 				$prompt = new \mock\mageekguy\atoum\cli\prompt()
 			)
 			->if(
-				$field = new testedClass(),
-				$field
+				$this->newTestedInstance,
+				$this->testedInstance
 					->setColorizer($colorizer)
 					->setPrompt($prompt)
 					->handleEvent(atoum\test::runStart, $test)
 			)
-			->when($field->__toString())
+			->when($this->testedInstance->__toString())
 			->then
 				->mock($colorizer)
 					->call('colorize')->withArguments($testedClassName)->once()

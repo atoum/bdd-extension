@@ -7,8 +7,7 @@ use
 	mageekguy\atoum\bdd,
 	mageekguy\atoum\report\fields\test,
 	mageekguy\atoum\report\fields\runner,
-	mageekguy\atoum\bdd\specs,
-	mageekguy\atoum\bdd\report\fields\runner\result\cli as testedClass
+	mageekguy\atoum\bdd\specs
 ;
 
 class cli extends specs\units
@@ -20,14 +19,16 @@ class cli extends specs\units
 
 	public function should_construct()
 	{
-		$this->object(new testedClass());
+		$this->newTestedInstance;
 	}
 
 	public function should_display_a_message_when_there_is_no_test()
 	{
 		$this
-			->invoking->__toString()->on(new testedClass())
-				->shouldReturn->string->isEqualTo('No test running.' . PHP_EOL)
+			->if($this->newTestedInstance)
+			->then
+				->invoking->__toString()
+					->shouldReturn->string->isEqualTo('No test running.' . PHP_EOL)
 		;
 	}
 
@@ -36,11 +37,11 @@ class cli extends specs\units
 		$this
 			->given($runner = new atoum\runner())
 			->if(
-				$field = new testedClass(),
-				$field->handleEvent(atoum\runner::runStop, $runner)
+				$this->newTestedInstance,
+				$this->testedInstance->handleEvent(atoum\runner::runStop, $runner)
 			)
 			->then
-				->invoking->__toString()->on($field)
+				->invoking->__toString()
 					->shouldReturn->string->isEqualTo('Success (0 spec, 0/0 example, 0 void example, 0 skipped example, 0 assertion)!' . PHP_EOL)
 		;
 	}
@@ -54,13 +55,13 @@ class cli extends specs\units
 				$prompt = new \mock\mageekguy\atoum\cli\prompt()
 			)
 			->if(
-				$field = new testedClass(),
-				$field
+				$this->newTestedInstance,
+				$this->testedInstance
 					->setPrompt($prompt)
 					->setSuccessColorizer($colorizer)
 					->handleEvent(atoum\runner::runStop, $runner)
 			)
-			->when($field->__toString())
+			->when($this->testedInstance->__toString())
 			->then
 				->mock($colorizer)
 					->call('colorize')->withArguments('Success (0 spec, 0/0 example, 0 void example, 0 skipped example, 0 assertion)!')->once()
@@ -82,11 +83,11 @@ class cli extends specs\units
 				$this->calling($score)->getFailNumber = 1
 			)
 			->if(
-				$field = new testedClass(),
-				$field->handleEvent(atoum\runner::runStop, $runner)
+				$this->newTestedInstance,
+				$this->testedInstance->handleEvent(atoum\runner::runStop, $runner)
 			)
 			->then
-				->invoking->__toString()->on($field)
+				->invoking->__toString()
 					->shouldReturn->string->isEqualTo('Failure (1 spec, 1/1 example, 0 void example, 0 skipped example, 0 uncompleted example, 1 failure, 0 error, 0 exception)!' . PHP_EOL)
 		;
 	}
@@ -106,13 +107,13 @@ class cli extends specs\units
 				$this->calling($score)->getFailNumber = 1
 			)
 			->if(
-				$field = new testedClass(),
-				$field
+				$this->newTestedInstance,
+				$this->testedInstance
 					->setPrompt($prompt)
 					->setFailureColorizer($colorizer)
 					->handleEvent(atoum\runner::runStop, $runner)
 			)
-			->when($field->__toString())
+			->when($this->testedInstance->__toString())
 			->then
 				->mock($colorizer)
 					->call('colorize')->withArguments('Failure (1 spec, 1/1 example, 0 void example, 0 skipped example, 0 uncompleted example, 1 failure, 0 error, 0 exception)!')->once()

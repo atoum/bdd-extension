@@ -7,8 +7,7 @@ use
 	mageekguy\atoum\bdd,
 	mageekguy\atoum\report\fields\test,
 	mageekguy\atoum\report\fields\runner,
-	mageekguy\atoum\bdd\specs,
-	mageekguy\atoum\bdd\report\fields\spec\event\success as testedClass
+	mageekguy\atoum\bdd\specs
 ;
 
 class success extends specs\units
@@ -20,7 +19,7 @@ class success extends specs\units
 
 	public function should_construct()
 	{
-		$this->object(new testedClass());
+		$this->newTestedInstance;
 	}
 
 	public function should_display_successful_example_name()
@@ -33,11 +32,11 @@ class success extends specs\units
 				$this->calling($test)->getScore = $score
 			)
 			->if(
-				$field = new testedClass(),
-				$field->handleEvent(atoum\test::success, $test)
+				$this->newTestedInstance,
+				$this->testedInstance->handleEvent(atoum\test::success, $test)
 			)
 			->then
-				->invoking->__toString->on($field)
+				->invoking->__toString
 					->shouldReturn->string->isEqualTo('  ✔  ' . $currentMethod . PHP_EOL)
 		;
 	}
@@ -54,10 +53,10 @@ class success extends specs\units
 				$colorizer = new \mock\mageekguy\atoum\cli\colorizer()
 			)
 			->if(
-				$field = new testedClass($colorizer, $prompt),
-				$field->handleEvent(atoum\test::success, $test)
+				$this->newTestedInstance($colorizer, $prompt),
+				$this->testedInstance->handleEvent(atoum\test::success, $test)
 			)
-			->when($field->__toString())
+			->when($this->testedInstance->__toString())
 			->then
 				->mock($colorizer)
 					->call('colorize')->withArguments($currentMethod)->once()

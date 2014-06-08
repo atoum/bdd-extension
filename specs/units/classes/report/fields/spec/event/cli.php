@@ -7,8 +7,7 @@ use
 	mageekguy\atoum\bdd,
 	mageekguy\atoum\report\fields\test,
 	mageekguy\atoum\report\fields\runner,
-	mageekguy\atoum\bdd\specs,
-	mageekguy\atoum\bdd\report\fields\spec\event\cli as testedClass
+	mageekguy\atoum\bdd\specs
 ;
 
 class cli extends specs\units
@@ -20,7 +19,7 @@ class cli extends specs\units
 
 	public function should_construct()
 	{
-		$this->object(new testedClass());
+		$this->newTestedInstance;
 	}
 
 	public function should_add_a_new_line()
@@ -33,11 +32,11 @@ class cli extends specs\units
 				$this->calling($test)->getScore = $score
 			)
 			->if(
-				$field = new testedClass(),
-				$field->handleEvent(atoum\test::runStop, $test)
+				$this->newTestedInstance,
+				$this->testedInstance->handleEvent(atoum\test::runStop, $test)
 			)
 			->then
-				->invoking->__toString->on($field)
+				->invoking->__toString
 					->shouldReturn->string->isEqualTo(PHP_EOL)
 		;
 	}

@@ -20,7 +20,7 @@ class error extends specs\units
 
 	public function should_construct()
 	{
-		$this->object(new testedClass());
+		$this->newTestedInstance;
 	}
 
 	public function should_display_errored_example_name()
@@ -43,11 +43,11 @@ class error extends specs\units
 				$this->calling($test)->getScore = $score
 			)
 			->if(
-				$field = new testedClass(),
-				$field->handleEvent(atoum\test::error, $test)
+				$this->newTestedInstance,
+				$this->testedInstance->handleEvent(atoum\test::error, $test)
 			)
 			->then
-				->invoking->__toString->on($field)
+				->invoking->__toString
 					->shouldReturn->string->isEqualTo('  ✘  ' . $currentMethod . PHP_EOL . '     ' . $errorType . ': ' . $message . PHP_EOL .  '     File: ' . $file . PHP_EOL . '     Line: ' . $line . PHP_EOL)
 		;
 	}
@@ -74,10 +74,10 @@ class error extends specs\units
 				$colorizer = new \mock\mageekguy\atoum\cli\colorizer()
 			)
 			->if(
-				$field = new testedClass($colorizer, $prompt),
-				$field->handleEvent(atoum\test::error, $test)
+				$this->newTestedInstance($colorizer, $prompt),
+				$this->testedInstance->handleEvent(atoum\test::error, $test)
 			)
-			->when($field->__toString())
+			->when($this->testedInstance->__toString())
 			->then
 				->mock($colorizer)
 					->call('colorize')->withArguments($currentMethod)->once()

@@ -160,7 +160,7 @@ class invoking extends atoum\asserter
 
 	public function throws($exception = null)
 	{
-		$testedInstance = $this->testedInstance;
+		$testedInstance = $this->testedInstanceIsSet()->testedInstance;
 		$testedMethodName = $this->testedMethodName;
 		$testedMethodArguments = $this->testedMethodArguments;
 
@@ -192,7 +192,13 @@ class invoking extends atoum\asserter
 	{
 		if ($this->testedInstance === null)
 		{
-			throw new exceptions\logic($message);
+			if ($this->test->testedInstance === null)
+			{
+				throw new exceptions\logic($message);
+			}
+
+			$this->testedInstance = $this->test->testedInstance;
+
 		}
 
 		return $this;

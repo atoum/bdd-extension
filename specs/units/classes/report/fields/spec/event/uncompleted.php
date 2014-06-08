@@ -7,8 +7,7 @@ use
 	mageekguy\atoum\bdd,
 	mageekguy\atoum\report\fields\test,
 	mageekguy\atoum\report\fields\runner,
-	mageekguy\atoum\bdd\specs,
-	mageekguy\atoum\bdd\report\fields\spec\event\uncompleted as testedClass
+	mageekguy\atoum\bdd\specs
 ;
 
 class uncompleted extends specs\units
@@ -20,7 +19,7 @@ class uncompleted extends specs\units
 
 	public function should_construct()
 	{
-		$this->object(new testedClass());
+		$this->newTestedInstance;
 	}
 
 	public function should_display_void_example_name()
@@ -41,11 +40,11 @@ class uncompleted extends specs\units
 				$this->calling($test)->getScore = $score
 			)
 			->if(
-				$field = new testedClass(),
-				$field->handleEvent(atoum\test::uncompleted, $test)
+				$this->newTestedInstance,
+				$this->testedInstance->handleEvent(atoum\test::uncompleted, $test)
 			)
 			->then
-				->invoking->__toString->on($field)
+				->invoking->__toString
 					->shouldReturn->string->isEqualTo('     Uncompleted (exit code: ' . $exitCode . '): output(' . strlen($output) . ') "' . $output . '"' . PHP_EOL)
 		;
 	}
@@ -69,10 +68,10 @@ class uncompleted extends specs\units
 				$prompt = new \mock\mageekguy\atoum\cli\prompt()
 			)
 			->if(
-				$field = new testedClass($prompt),
-				$field->handleEvent(atoum\test::uncompleted, $test)
+				$this->newTestedInstance($prompt),
+				$this->testedInstance->handleEvent(atoum\test::uncompleted, $test)
 			)
-			->when($field->__toString())
+			->when($this->testedInstance->__toString())
 			->then
 				->mock($prompt)
 					->call('__toString')->once()
