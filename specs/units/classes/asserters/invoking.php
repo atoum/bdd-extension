@@ -53,7 +53,7 @@ class invoking extends specs\units
 			->then
 				->invoking('setMethod', $method = uniqid())->on($asserter)
 					->shouldThrow('mageekguy\atoum\asserter\exception')
-						->hasMessage(sprintf('Method %s::%s() does not exist', $testedClassName, $method))
+						->hasMessage(sprintf('%s::%s() does not exist', $testedClassName, $method))
 					->mock($phpClass)
 						->call('hasMethod')->withArguments($method)->once()
 
