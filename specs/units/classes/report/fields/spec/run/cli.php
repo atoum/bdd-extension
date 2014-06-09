@@ -29,10 +29,7 @@ class cli extends specs\units
 				$test = new \mock\mageekguy\atoum\test(),
 				$this->calling($test)->getTestedClassName = $testedClassName = uniqid()
 			)
-			->if(
-				$this->newTestedInstance,
-				$this->testedInstance->handleEvent(atoum\test::runStart, $test)
-			)
+			->if($this->testedInstance->handleEvent(atoum\test::runStart, $test))
 			->then
 				->invoking->__toString
 					->shouldReturn->string->isEqualTo($testedClassName . '...' . PHP_EOL)
@@ -49,7 +46,6 @@ class cli extends specs\units
 				$prompt = new \mock\mageekguy\atoum\cli\prompt()
 			)
 			->if(
-				$this->newTestedInstance,
 				$this->testedInstance
 					->setColorizer($colorizer)
 					->setPrompt($prompt)

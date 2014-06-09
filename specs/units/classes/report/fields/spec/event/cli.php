@@ -31,10 +31,7 @@ class cli extends specs\units
 				$this->calling($test)->getCurrentMethod = $currentMethod = uniqid(),
 				$this->calling($test)->getScore = $score
 			)
-			->if(
-				$this->newTestedInstance,
-				$this->testedInstance->handleEvent(atoum\test::runStop, $test)
-			)
+			->if($this->testedInstance->handleEvent(atoum\test::runStop, $test))
 			->then
 				->invoking->__toString
 					->shouldReturn->string->isEqualTo(PHP_EOL)

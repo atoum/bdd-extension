@@ -9,8 +9,7 @@ use
 	mageekguy\atoum\cli\colorizer,
 	mageekguy\atoum\report\fields\test,
 	mageekguy\atoum\report\fields\runner,
-	mageekguy\atoum\bdd\specs,
-	mageekguy\atoum\bdd\reports\realtime\cli as testedClass
+	mageekguy\atoum\bdd\specs
 ;
 
 class cli extends specs\units
@@ -22,7 +21,7 @@ class cli extends specs\units
 
 	public function should_construct()
 	{
-		$this->object(new testedClass());
+		$this->newTestedInstance;
 	}
 
 	public function shouldHaveTestsEventsFields()
@@ -34,9 +33,8 @@ class cli extends specs\units
 					->setPrompt(new prompt('> ', $defaultColorizer = new colorizer(1)))
 					->setColorizer($defaultColorizer)
 			)
-			->if($report = new testedClass())
 			->then
-				->invoking->getFields()->on($report)
+				->invoking->getFields
 					->shouldReturn->array
 						->contains($testEventsField)
 						->contains(new bdd\report\fields\spec\event\cli())
@@ -46,40 +44,32 @@ class cli extends specs\units
 	public function shouldHaveTestsFailuresEventsField()
 	{
 		$this
-			->if($report = new testedClass())
-			->then
-				->invoking->getFields()->on($report)
-					->shouldReturn->array->contains(new bdd\report\fields\spec\event\fails\failure())
+			->invoking->getFields
+				->shouldReturn->array->contains(new bdd\report\fields\spec\event\fails\failure())
 		;
 	}
 
 	public function shouldHaveTestsExceptionsEventsField()
 	{
 		$this
-			->if($report = new testedClass())
-			->then
-				->invoking->getFields()->on($report)
-					->shouldReturn->array->contains(new bdd\report\fields\spec\event\fails\exception())
+			->invoking->getFields
+				->shouldReturn->array->contains(new bdd\report\fields\spec\event\fails\exception())
 		;
 	}
 
 	public function shouldHaveTestsErrorsEventsField()
 	{
 		$this
-			->if($report = new testedClass())
-			->then
-				->invoking->getFields()->on($report)
-					->shouldReturn->array->contains(new bdd\report\fields\spec\event\fails\error())
+			->invoking->getFields
+				->shouldReturn->array->contains(new bdd\report\fields\spec\event\fails\error())
 		;
 	}
 
 	public function shouldHaveTestsSkippedEventsField()
 	{
 		$this
-			->if($report = new testedClass())
-			->then
-				->invoking->getFields->on($report)
-					->shouldReturn->array->contains(new bdd\report\fields\spec\event\skipped())
+			->invoking->getFields
+				->shouldReturn->array->contains(new bdd\report\fields\spec\event\skipped())
 		;
 	}
 
@@ -93,9 +83,8 @@ class cli extends specs\units
 					->setTitleColorizer($defaultColorizer)
 					->setMethodPrompt(new prompt('=> ', $defaultColorizer))
 			)
-			->if($report = new testedClass())
 			->then
-				->invoking->getFields->on($report)
+				->invoking->getFields
 					->shouldReturn->array->contains($runnerOutputsField)
 		;
 	}
@@ -109,9 +98,8 @@ class cli extends specs\units
 					->setSuccessColorizer(new colorizer('1;37;42'))
 					->setFailureColorizer(new colorizer('1;37;41'))
 			)
-			->if($report = new testedClass())
 			->then
-				->invoking->getFields()->on($report)
+				->invoking->getFields()
 					->shouldReturn->array->contains($runnerResultField)
 		;
 	}

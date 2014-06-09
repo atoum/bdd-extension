@@ -4,8 +4,7 @@ namespace mageekguy\atoum\bdd\specs\units;
 
 use
 	mageekguy\atoum,
-	mageekguy\atoum\bdd\specs,
-	mageekguy\atoum\bdd\extension as testedClass
+	mageekguy\atoum\bdd\specs
 ;
 
 class extension extends specs\units
@@ -17,7 +16,7 @@ class extension extends specs\units
 
 	public function should_construct()
 	{
-		$this->object(new testedClass());
+		$this->newTestedInstance;
 	}
 
 	public function should_construct_and_set_test_command_line_handlers()
@@ -30,7 +29,7 @@ class extension extends specs\units
 				$script->setArgumentsParser($parser),
 				$this->resetMock($parser)
 			)
-			->when(new testedClass($configurator))
+			->if($this->newTestedInstance($configurator))
 			->then
 				->mock($parser)
 					->call('addHandler')->twice()
@@ -43,13 +42,12 @@ class extension extends specs\units
 	{
 		$this
 			->given($runner = new atoum\runner())
-			->if($extension = new testedClass())
 			->then
-				->invoking->getRunner->on($extension)
+				->invoking->getRunner
 					->shouldReturn->variable->isNull()
-				->invoking->setRunner($runner)->on($extension)
-					->shouldReturn->object->isIdenticalTo($extension)
-				->invoking->getRunner->on($extension)
+				->invoking->setRunner($runner)
+					->shouldReturn->object->isTestedInstance
+				->invoking->getRunner
 					->shouldReturn->object->isIdenticalTo($runner)
 		;
 	}
@@ -58,13 +56,12 @@ class extension extends specs\units
 	{
 		$this
 			->given($test = new \mock\mageekguy\atoum\test())
-			->if($extension = new testedClass())
 			->then
-				->invoking->getTest->on($extension)
+				->invoking->getTest
 					->shouldReturn->variable->isNull()
-				->invoking->setTest($test)->on($extension)
-					->shouldReturn->object->isIdenticalTo($extension)
-				->invoking->getTest->on($extension)
+				->invoking->setTest($test)
+					->shouldReturn->object->isTestedInstance
+				->invoking->getTest
 					->shouldReturn->object->isIdenticalTo($test)
 		;
 	}
@@ -72,10 +69,8 @@ class extension extends specs\units
 	public function should_gracefully_ignore_events()
 	{
 		$this
-			->if($extension = new testedClass())
-			->then
-				->invoking->handleEvent(uniqid(), new \mock\mageekguy\atoum\observable())->on($extension)
-					->shouldReturn->object->isIdenticalTo($extension)
+			->invoking->handleEvent(uniqid(), new \mock\mageekguy\atoum\observable())
+				->shouldReturn->object->isTestedInstance
 		;
 	}
 }

@@ -25,10 +25,8 @@ class cli extends specs\units
 	public function should_display_a_message_when_there_is_no_test()
 	{
 		$this
-			->if($this->newTestedInstance)
-			->then
-				->invoking->__toString()
-					->shouldReturn->string->isEqualTo('No test running.' . PHP_EOL)
+			->invoking->__toString()
+				->shouldReturn->string->isEqualTo('No test running.' . PHP_EOL)
 		;
 	}
 
@@ -36,10 +34,7 @@ class cli extends specs\units
 	{
 		$this
 			->given($runner = new atoum\runner())
-			->if(
-				$this->newTestedInstance,
-				$this->testedInstance->handleEvent(atoum\runner::runStop, $runner)
-			)
+			->if($this->testedInstance->handleEvent(atoum\runner::runStop, $runner))
 			->then
 				->invoking->__toString()
 					->shouldReturn->string->isEqualTo('Success (0 spec, 0/0 example, 0 void example, 0 skipped example, 0 assertion)!' . PHP_EOL)
@@ -55,7 +50,6 @@ class cli extends specs\units
 				$prompt = new \mock\mageekguy\atoum\cli\prompt()
 			)
 			->if(
-				$this->newTestedInstance,
 				$this->testedInstance
 					->setPrompt($prompt)
 					->setSuccessColorizer($colorizer)
@@ -82,10 +76,7 @@ class cli extends specs\units
 				$this->calling($score)->getAssertionNumber = 1,
 				$this->calling($score)->getFailNumber = 1
 			)
-			->if(
-				$this->newTestedInstance,
-				$this->testedInstance->handleEvent(atoum\runner::runStop, $runner)
-			)
+			->if($this->testedInstance->handleEvent(atoum\runner::runStop, $runner))
 			->then
 				->invoking->__toString()
 					->shouldReturn->string->isEqualTo('Failure (1 spec, 1/1 example, 0 void example, 0 skipped example, 0 uncompleted example, 1 failure, 0 error, 0 exception)!' . PHP_EOL)
@@ -107,7 +98,6 @@ class cli extends specs\units
 				$this->calling($score)->getFailNumber = 1
 			)
 			->if(
-				$this->newTestedInstance,
 				$this->testedInstance
 					->setPrompt($prompt)
 					->setFailureColorizer($colorizer)

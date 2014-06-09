@@ -39,10 +39,7 @@ class uncompleted extends specs\units
 				),
 				$this->calling($test)->getScore = $score
 			)
-			->if(
-				$this->newTestedInstance,
-				$this->testedInstance->handleEvent(atoum\test::uncompleted, $test)
-			)
+			->if($this->testedInstance->handleEvent(atoum\test::uncompleted, $test))
 			->then
 				->invoking->__toString
 					->shouldReturn->string->isEqualTo('     Uncompleted (exit code: ' . $exitCode . '): output(' . strlen($output) . ') "' . $output . '"' . PHP_EOL)

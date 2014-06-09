@@ -37,10 +37,7 @@ class void extends specs\units
 				),
 				$this->calling($test)->getScore = $score
 			)
-			->if(
-				$this->newTestedInstance,
-				$this->testedInstance->handleEvent(atoum\test::void, $test)
-			)
+			->if($this->testedInstance->handleEvent(atoum\test::void, $test))
 			->then
 				->invoking->__toString
 					->shouldReturn->string->isEqualTo('  ∅  ' . $currentMethod . PHP_EOL)

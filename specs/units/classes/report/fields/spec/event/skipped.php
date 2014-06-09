@@ -40,10 +40,7 @@ class skipped extends specs\units
 				),
 				$this->calling($test)->getScore = $score
 			)
-			->if(
-				$this->newTestedInstance,
-				$this->testedInstance->handleEvent(atoum\test::skipped, $test)
-			)
+			->if($this->testedInstance->handleEvent(atoum\test::skipped, $test))
 			->then
 				->invoking->__toString
 					->shouldReturn->string->isEqualTo('  ↣  ' . $currentMethod . PHP_EOL . '     Skipped: ' . $reason . PHP_EOL .  '     File: ' . $file . PHP_EOL . '     Line: ' . $line . PHP_EOL)

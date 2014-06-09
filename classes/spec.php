@@ -45,6 +45,12 @@ class spec extends atoum\test
 	{
 		parent::beforeTestMethod($testMethod);
 
+		try
+		{
+			$this->newTestedInstance;
+		}
+		catch (atoum\exceptions\runtime $exception) {}
+
 		$this->beforeExample($testMethod);
 	}
 

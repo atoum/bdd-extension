@@ -4,8 +4,7 @@ namespace mageekguy\atoum\bdd\specs\units;
 
 use
 	mageekguy\atoum,
-	mageekguy\atoum\bdd\specs,
-	mageekguy\atoum\bdd\spec as testedClass
+	mageekguy\atoum\bdd\specs
 ;
 
 class spec extends specs\units
@@ -17,15 +16,14 @@ class spec extends specs\units
 
 	public function should_construct()
 	{
-		$this->object(new testedClass());
+		$this->newTestedInstance;
 	}
 
 	public function should_set_invoking_assertion_handler()
 	{
 		$this
 			->given($manager = new \mock\mageekguy\atoum\test\assertion\manager())
-			->if($test = new testedClass())
-			->when($test->setAssertionManager($manager))
+			->when($this->testedInstance->setAssertionManager($manager))
 			->then
 				->mock($manager)
 					->call('setHandler')->withArguments('invoking')->once()

@@ -38,10 +38,7 @@ class exception extends specs\units
 				),
 				$this->calling($test)->getScore = $score
 			)
-			->if(
-				$this->newTestedInstance,
-				$this->testedInstance->handleEvent(atoum\test::exception, $test)
-			)
+			->if($this->testedInstance->handleEvent(atoum\test::exception, $test))
 			->then
 				->invoking->__toString
 					->shouldReturn->string->isEqualTo('  ✘  ' . $currentMethod . PHP_EOL . '     Exception: ' . $firstLine . PHP_EOL . '     ' . $secondLine . PHP_EOL . '       ' . $thirdLine . PHP_EOL)

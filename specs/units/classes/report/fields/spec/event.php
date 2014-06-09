@@ -24,10 +24,7 @@ class event extends specs\units
 				$test = new \mock\mageekguy\atoum\test(),
 				$this->calling($test)->getCurrentMethod = $firstPart = __FUNCTION__
 			)
-			->if(
-				$this->newTestedInstance,
-				$this->testedInstance->handleEvent(atoum\test::runStart, $test)
-			)
+			->if($this->testedInstance->handleEvent(atoum\test::runStart, $test))
 			->then
 				->invoking->getCurrentExample
 					->shouldReturn->string->isEqualTo(implode(' ', explode('_', __FUNCTION__)))
@@ -41,10 +38,7 @@ class event extends specs\units
 				$test = new \mock\mageekguy\atoum\test(),
 				$this->calling($test)->getCurrentMethod = $firstPart = __FUNCTION__
 			)
-			->if(
-				$this->newTestedInstance,
-				$this->testedInstance->handleEvent(atoum\test::runStart, $test)
-			)
+			->if($this->testedInstance->handleEvent(atoum\test::runStart, $test))
 			->then
 				->invoking->getCurrentExample
 					->shouldReturn->string->isEqualTo(implode(' ', array_map('strtolower', preg_split('/(?=[A-Z])/', __FUNCTION__))))

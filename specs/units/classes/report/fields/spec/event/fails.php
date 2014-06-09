@@ -31,10 +31,7 @@ class fails extends specs\units
 				$this->calling($test)->getCurrentMethod = $currentMethod = uniqid(),
 				$this->calling($test)->getScore = $score
 			)
-			->if(
-				$this->newTestedInstance,
-				$this->testedInstance->handleEvent(atoum\test::fail, $test)
-			)
+			->if($this->testedInstance->handleEvent(atoum\test::fail, $test))
 			->then
 				->invoking->__toString
 					->shouldReturn->string->isEqualTo('  ✘  ' . $currentMethod . PHP_EOL)
