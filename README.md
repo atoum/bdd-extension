@@ -1,4 +1,4 @@
-# atoum Spec BDD extension
+# atoum Spec BDD extension [![Build Status](https://travis-ci.org/atoum/bdd-extension.svg?branch=master)](https://travis-ci.org/atoum/bdd-extension)
 
 ![atoum](http://downloads.atoum.org/images/logo.png)
 
@@ -8,20 +8,9 @@ Install extension using [composer](https://getcomposer.org):
 
 ```json
 {
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/jubianchi/atoum"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/jubianchi/atoum-bdd-extension"
-        }
-    ],
     "require-dev": {
-        "atoum/atoum": "dev-extension",
-        "atoum/bdd-extension": "dev-master"
-    },
+        "atoum/bdd-extension": "~1.0"
+    }
 }
 
 ```
