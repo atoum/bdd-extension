@@ -44,4 +44,18 @@ class event extends specs\units
 					->shouldReturn->string->isEqualTo(implode(' ', array_map('strtolower', preg_split('/(?=[A-Z])/', __FUNCTION__))))
 		;
 	}
+
+    public function shouldProvideExampleNameFromCamelCaseMethodsContainingAbbreviations()
+	{
+		$this
+			->given(
+				$test = new \mock\mageekguy\atoum\test(),
+				$this->calling($test)->getCurrentMethod = $firstPart = 'should_contain_ABBR'
+			)
+			->if($this->testedInstance->handleEvent(atoum\test::runStart, $test))
+			->then
+				->invoking->getCurrentExample
+					->shouldReturn->string->isEqualTo('should contain ABBR')
+		;
+	}
 }

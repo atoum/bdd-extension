@@ -14,11 +14,20 @@ abstract class event extends report\fields\test\event
 	{
 		if ($this->observable !== null)
 		{
-			$example = preg_split('/(?:_+|(?=[A-Z]))/', $this->observable->getCurrentMethod());
-			$example = array_filter($example, function($v) { return trim($v) !== ''; });
-			$example = array_map(function($v) { return strtolower(trim($v)); }, $example);
+			$example = preg_split('/(?:_+|(?=[A-Z](?![A-Z]|$)))/', $this->observable->getCurrentMethod());
+			$example = array_filter($example);
+			$example = array_map(
+                function($v) {
+                    if (preg_match('/^[A-Z]+$/', $v) === 0) {
+                        $v = strtolower($v);
+                    }
 
-			return implode(' ', array_map(function($v) { return strtolower(trim($v)); }, $example));
+                    return trim($v);
+                },
+                $example
+            );
+
+			return implode(' ', $example);
 		}
 
 		return null;
