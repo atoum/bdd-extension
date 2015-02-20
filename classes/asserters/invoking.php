@@ -86,10 +86,10 @@ class invoking extends atoum\asserter
 
 	public function reset()
 	{
-		parent::reset();
-
 		$this->testedMethodArguments = array();
 		$this->testedMethodName = null;
+
+		return parent::reset();
 	}
 
 	public function setWithTest(atoum\test $test)
@@ -155,6 +155,8 @@ class invoking extends atoum\asserter
 			$this->variable($this->actualValue)->isEqualTo($mixed);
 		}
 
+		$this->testedInstance = null;
+
 		return $this;
 	}
 
@@ -174,6 +176,8 @@ class invoking extends atoum\asserter
 		{
 			$asserter->isInstanceOf($exception);
 		}
+
+		$this->testedInstance = null;
 
 		return $asserter;
 	}
@@ -198,7 +202,6 @@ class invoking extends atoum\asserter
 			}
 
 			$this->testedInstance = $this->test->testedInstance;
-
 		}
 
 		return $this;

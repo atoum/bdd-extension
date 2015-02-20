@@ -114,10 +114,14 @@ class invoking extends specs\units
 			->then
 				->invoking('setInstance', $object)
 					->shouldReturn->object->isTestedInstance
+			->if($this->testedInstance->setInstance($object))
+			->then
 				->invoking('returns', $value)
 					->shouldReturn->object->isTestedInstance
 					->mock($object)
 						->call($method)->once()
+			->if($this->testedInstance->setInstance($object))
+			->then
 				->invoking('returns', uniqid())
 					->shouldThrow('mageekguy\atoum\asserter\exception')
 		;
