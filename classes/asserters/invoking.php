@@ -196,14 +196,16 @@ class invoking extends atoum\asserter
 	{
 		if ($this->testedInstance === null)
 		{
-			if ($this->test->testedInstance === null)
+			try
 			{
-				throw new exceptions\logic($message);
+				$this->testedInstance = $this->test->testedInstance;
 			}
-
-			$this->testedInstance = $this->test->testedInstance;
+			catch (atoum\exceptions\runtime $e)
+			{
+				$this->testedInstance = $this->test->newTestedInstance;
+			}
 		}
 
 		return $this;
 	}
-} 
+}

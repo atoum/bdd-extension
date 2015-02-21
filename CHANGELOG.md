@@ -1,3 +1,7 @@
+# 2.0.0 - 2015-02-21
+
+* Update to atoum 2.0
+
 # 1.0.2 - 2015-02-21
 
 * Improved autoloaders

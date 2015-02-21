@@ -26,6 +26,18 @@ class spec extends atoum\test
 			return call_user_func_array(array($this, 'invoking'), $arguments);
 		}
 
+		if ($property === 'testedInstance')
+		{
+			try
+			{
+				return parent::__get($property);
+			}
+			catch(atoum\exceptions\runtime $e)
+			{
+				return $this->newTestedInstance;
+			}
+		}
+
 		return parent::__get($property);
 	}
 
@@ -44,12 +56,6 @@ class spec extends atoum\test
 	public function beforeTestMethod($testMethod)
 	{
 		parent::beforeTestMethod($testMethod);
-
-		try
-		{
-			$this->newTestedInstance;
-		}
-		catch (atoum\exceptions\runtime $exception) {}
 
 		$this->beforeExample($testMethod);
 	}
@@ -101,4 +107,4 @@ class spec extends atoum\test
 
 		return $this;
 	}
-} 
+}
