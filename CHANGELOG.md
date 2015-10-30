@@ -1,3 +1,7 @@
+# 2.0.1 - 2015-10-30
+
+* Fixed a bug in example names containing one-letter words
+
 # 2.0.0 - 2015-02-21
 
 * Update to atoum 2.0
