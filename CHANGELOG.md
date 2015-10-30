@@ -1,3 +1,7 @@
+# 2.0.2 - 2015-10-30
+
+* Nothing new, just a typo
+
 # 2.0.1 - 2015-10-30
 
 * Fixed a bug in example names containing one-letter words
