@@ -17,7 +17,7 @@ class event extends specs\units
 		$this->testedClass->isSubClassOf('mageekguy\atoum\report\fields\test\event');
 	}
 
-	public function should_provide_example_name_from_underscore_methods_()
+	public function should_provide_example_name_from_underscore_methods()
 	{
 		$this
 			->given(
