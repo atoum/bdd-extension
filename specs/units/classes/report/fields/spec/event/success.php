@@ -29,12 +29,22 @@ class success extends specs\units
 				$score = new \mock\mageekguy\atoum\score(),
 				$test = new \mock\mageekguy\atoum\test(),
 				$this->calling($test)->getCurrentMethod = $currentMethod = uniqid(),
-				$this->calling($test)->getScore = $score
+				$this->calling($test)->getScore = $score,
+				$this->mockGenerator->orphanize('__construct'),
+				$method = new \mock\reflectionMethod(),
+				$this->calling($method)->getFileName = $currentFile = uniqid(),
+				$this->calling($method)->getStartLine = $currentLine = rand(0, PHP_INT_MAX)
 			)
-			->if($this->testedInstance->handleEvent(atoum\test::success, $test))
+			->if(
+				$this->testedInstance->setReflectionMethodFactory(function() use ($method) {
+						return $method;
+					}
+				),
+				$this->testedInstance->handleEvent(atoum\test::success, $test)
+			)
 			->then
 				->invoking->__toString
-					->shouldReturn->string->isEqualTo('  ✔  ' . $currentMethod . PHP_EOL)
+					->shouldReturn->string->isEqualTo('  ✔  ' . $currentMethod . ' (./' . $currentFile . ':' . $currentLine . ')' . PHP_EOL)
 		;
 	}
 
@@ -46,17 +56,26 @@ class success extends specs\units
 				$test = new \mock\mageekguy\atoum\test(),
 				$this->calling($test)->getCurrentMethod = $currentMethod = uniqid(),
 				$this->calling($test)->getScore = $score,
+				$this->mockGenerator->orphanize('__construct'),
+				$method = new \mock\reflectionMethod(),
+				$this->calling($method)->getFileName = $currentFile = uniqid(),
+				$this->calling($method)->getStartLine = $currentLine = rand(0, PHP_INT_MAX),
 				$prompt = new \mock\mageekguy\atoum\cli\prompt(),
 				$colorizer = new \mock\mageekguy\atoum\cli\colorizer()
 			)
 			->if(
-				$this->newTestedInstance($colorizer, $prompt),
+				$this->newTestedInstance($colorizer, $colorizer, $prompt),
+				$this->testedInstance->setReflectionMethodFactory(function() use ($method) {
+						return $method;
+					}
+				),
 				$this->testedInstance->handleEvent(atoum\test::success, $test)
 			)
 			->when($this->testedInstance->__toString())
 			->then
 				->mock($colorizer)
 					->call('colorize')->withArguments($currentMethod)->once()
+					->call('colorize')->withArguments('(./' . $currentFile . ':' . $currentLine . ')')->once()
 				->mock($prompt)
 					->call('__toString')->once()
 		;

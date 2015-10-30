@@ -39,12 +39,22 @@ class failure extends specs\units
 						'asserter' => $asserter = uniqid(),
 					)
 				),
-				$this->calling($test)->getScore = $score
+				$this->calling($test)->getScore = $score,
+				$this->mockGenerator->orphanize('__construct'),
+				$method = new \mock\reflectionMethod(),
+				$this->calling($method)->getFileName = $currentFile = uniqid(),
+				$this->calling($method)->getStartLine = $currentLine = rand(0, PHP_INT_MAX)
 			)
-			->if($this->testedInstance->handleEvent(atoum\test::fail, $test))
+			->if(
+				$this->testedInstance->setReflectionMethodFactory(function() use ($method) {
+						return $method;
+					}
+				),
+				$this->testedInstance->handleEvent(atoum\test::fail, $test)
+			)
 			->then
 				->invoking->__toString
-					->shouldReturn->string->isEqualTo('  ✘  ' . $currentMethod . PHP_EOL . '     Failure: ' . $message . PHP_EOL . '     File: ' . $file . PHP_EOL . '     Line: ' . $line . PHP_EOL . '     Asserter: ' . $asserter . PHP_EOL)
+					->shouldReturn->string->isEqualTo('  ✘  ' . $currentMethod . ' (./' . $currentFile . ':' . $currentLine . ')' . PHP_EOL . '     Failure: ' . $message . PHP_EOL . '     File: ' . $file . PHP_EOL . '     Line: ' . $line . PHP_EOL . '     Asserter: ' . $asserter . PHP_EOL)
 		;
 	}
 
@@ -66,17 +76,26 @@ class failure extends specs\units
 					)
 				),
 				$this->calling($test)->getScore = $score,
+				$this->mockGenerator->orphanize('__construct'),
+				$method = new \mock\reflectionMethod(),
+				$this->calling($method)->getFileName = $currentFile = uniqid(),
+				$this->calling($method)->getStartLine = $currentLine = rand(0, PHP_INT_MAX),
 				$prompt = new \mock\mageekguy\atoum\cli\prompt(),
 				$colorizer = new \mock\mageekguy\atoum\cli\colorizer()
 			)
 			->if(
-				$this->newTestedInstance($colorizer, $prompt),
+				$this->newTestedInstance($colorizer, $colorizer, $prompt),
+				$this->testedInstance->setReflectionMethodFactory(function() use ($method) {
+						return $method;
+					}
+				),
 				$this->testedInstance->handleEvent(atoum\test::fail, $test)
 			)
 			->when($this->testedInstance->__toString())
 			->then
 				->mock($colorizer)
 					->call('colorize')->withArguments($currentMethod)->once()
+					->call('colorize')->withArguments('(./' . $currentFile . ':' . $currentLine . ')')->once()
 					->call('colorize')->withArguments('Failure: ')->once()
 					->call('colorize')->withArguments('File: ')->once()
 					->call('colorize')->withArguments('Line: ')->once()
