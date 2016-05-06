@@ -26,7 +26,9 @@ require_once __DIR__ . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'a
 
 use mageekguy\atoum\bdd;
 
-$runner->addExtension(new bdd\extension($script));
+$extension = new bdd\extension($script);
+
+$extension->addToRunner($extension);
 ```
 
 ## Use it
