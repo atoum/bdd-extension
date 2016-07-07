@@ -39,7 +39,7 @@ class cli extends realtime
 			->addField(new bdd\report\fields\spec\event\fails\failure())
 			->addField(new bdd\report\fields\spec\event\fails\exception())
 			->addField(new bdd\report\fields\spec\event\fails\error())
-			->addField(new bdd\report\fields\spec\event\void())
+			->addField(new bdd\report\fields\spec\event\blank())
 			->addField(new bdd\report\fields\spec\event\skipped())
 		;
 
