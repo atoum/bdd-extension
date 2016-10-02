@@ -247,3 +247,7 @@ Of course, you can also check the exception message using regular assertions:
 $this->invoking->format(__FUNCTION__)->on($formatter)->shouldThrow->hasMessage('...');
 $this->invoking->format(__FUNCTION__)->on($formatter)->throws('invalidArgumentException')->hasMessage('...');
 ```
+
+## Licence
+
+bdd-extension is released under the BSD-3-Clause. See the bundled LICENSE file for detail.
