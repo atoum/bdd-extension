@@ -131,7 +131,8 @@ class invoking extends specs\units
 	{
 		$this
 			->given(
-				$phpClass = new \mock\mageekguy\atoum\asserters\phpClass(),
+				$generator = new atoum\asserter\generator(),
+				$phpClass = new \mock\mageekguy\atoum\asserters\phpClass($generator),
 				$test = new \mock\mageekguy\atoum\test(),
 				$object = new \mock\dummy(),
 				$object->getMockController()->disableMethodChecking(),
@@ -139,10 +140,10 @@ class invoking extends specs\units
 				$this->calling($phpClass)->hasMethod = $phpClass,
 				$this->calling($object)->$method->throw = $exception = new \exception(),
 				$this->calling($test)->getTestedClassName = $testedClassName = get_class($object),
-				$exceptionAsserter = new atoum\asserters\exception()
+				$exceptionAsserter = new atoum\asserters\exception($generator)
 			)
 			->if(
-				$this->newTestedInstance(null, $phpClass),
+				$this->newTestedInstance($generator, $phpClass),
 				$this->testedInstance
 					->setWithTest($test)
 					->setMethod($method)
