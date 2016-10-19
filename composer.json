@@ -2,7 +2,7 @@
     "name": "atoum/bdd-extension",
     "type": "library",
     "description": "atoum Spec BDD extension",
-    "keywords": ["TDD","atoum","test","unit testing","spec","bdd"],
+    "keywords": ["TDD","atoum","test","unit testing","spec","bdd","atoum-extension"],
     "homepage": "http://www.atoum.org",
     "license": "BSD-3-Clause",
     "authors": [
