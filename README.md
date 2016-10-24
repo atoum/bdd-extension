@@ -28,7 +28,7 @@ use mageekguy\atoum\bdd;
 
 $extension = new bdd\extension($script);
 
-$extension->addToRunner($extension);
+$extension->addToRunner($runner);
 ```
 
 ## Use it
