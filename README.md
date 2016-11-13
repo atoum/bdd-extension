@@ -1,18 +1,31 @@
-# atoum Spec BDD extension [![Build Status](https://travis-ci.org/atoum/bdd-extension.svg?branch=master)](https://travis-ci.org/atoum/bdd-extension)
+# atoum/bdd-extension [![Build Status](https://travis-ci.org/atoum/bdd-extension.svg?branch=master)](https://travis-ci.org/atoum/bdd-extension)
 
-![atoum](http://atoum.org/images/logo/atoum.png)
+This extensions helps you to write your tests (specs) in a [Behavior Driven development](https://en.wikipedia.org/wiki/Behavior-driven_development) fashion.
+
+## Example
+
+```php
+public function should_format_underscore_separated_method_name()
+{
+    $this
+        ->given($formatter = new testedClass())
+        ->then
+            ->invoking->format(__FUNCTION__)->on($formatter)
+                ->shouldReturn('should format underscore separated method name')
+    ;
+}
+```
+
+and the output will look like this  :
+
+![output example](doc/output_example.png)
 
 ## Install it
 
 Install extension using [composer](https://getcomposer.org):
 
-```json
-{
-    "require-dev": {
-        "atoum/bdd-extension": "~1.0"
-    }
-}
-
+```
+composer require --dev atoum/bdd-extension
 ```
 
 Enable the extension using atoum configuration file:
@@ -27,8 +40,7 @@ require_once __DIR__ . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'a
 use mageekguy\atoum\bdd;
 
 $extension = new bdd\extension($script);
-
-$extension->addToRunner($runner);
+$runner->addExtension($extension);
 ```
 
 ## Use it
@@ -248,6 +260,13 @@ $this->invoking->format(__FUNCTION__)->on($formatter)->shouldThrow->hasMessage('
 $this->invoking->format(__FUNCTION__)->on($formatter)->throws('invalidArgumentException')->hasMessage('...');
 ```
 
+## Links
+
+* [atoum](http://atoum.org)
+* [atoum's documentation](http://docs.atoum.org)
+
 ## Licence
 
 bdd-extension is released under the BSD-3-Clause. See the bundled LICENSE file for detail.
+
+![atoum](http://atoum.org/images/logo/atoum.png)
