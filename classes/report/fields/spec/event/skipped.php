@@ -12,11 +12,12 @@ use
 
 class skipped extends report\fields\spec\event
 {
-	public function __construct(colorizer $colorizer = null, prompt $prompt = null)
+	public function __construct(colorizer $colorizer = null, $detailColorizer = null, prompt $prompt = null)
 	{
 		parent::__construct();
 
 		$this->colorizer = $colorizer ?: new colorizer(34);
+		$this->detailColorizer = $detailColorizer ?: new colorizer(30);
 		$this->prompt = $prompt ?: new prompt('  ↣ ', new colorizer('1;37', 44));
 		$this->events = array(test::skipped);
 	}
@@ -36,7 +37,7 @@ class skipped extends report\fields\spec\event
 					continue;
 				}
 
-				$string = $this->prompt . ' ' . $this->colorizer->colorize($this->getCurrentExample()) . PHP_EOL;
+				$string = $this->prompt . ' ' . $this->colorizer->colorize($this->getCurrentExample()) . ' ' . $this->detailColorizer->colorize('(' . $this->getCurrentFileAndLine() . ')') . PHP_EOL;
 				$string .= '     ' . $this->colorizer->colorize('Skipped: ') . $method['message'] . PHP_EOL;
 				$string .= '     ' . $this->colorizer->colorize('File: ') . $method['file'] . PHP_EOL;
 				$string .= '     ' . $this->colorizer->colorize('Line: ') . $method['line'] . PHP_EOL;

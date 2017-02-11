@@ -11,9 +11,9 @@ use
 
 class error extends report\fields\spec\event\fails
 {
-	public function __construct(cli\colorizer $colorizer = null, cli\prompt $prompt = null)
+	public function __construct(cli\colorizer $colorizer = null, cli\colorizer $detailColorizer = null, cli\prompt $prompt = null)
 	{
-		parent::__construct($colorizer, $prompt);
+		parent::__construct($colorizer, $detailColorizer, $prompt);
 
 		$this->events = array(test::uncompleted, test::error);
 	}

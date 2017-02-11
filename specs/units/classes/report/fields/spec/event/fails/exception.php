@@ -36,12 +36,22 @@ class exception extends specs\units
 						'value' => ($firstLine = uniqid()) . PHP_EOL . ($secondLine = uniqid()) . PHP_EOL . ($thirdLine = uniqid())
 					)
 				),
-				$this->calling($test)->getScore = $score
+				$this->calling($test)->getScore = $score,
+				$this->mockGenerator->orphanize('__construct'),
+				$method = new \mock\reflectionMethod(),
+				$this->calling($method)->getFileName = $currentFile = uniqid(),
+				$this->calling($method)->getStartLine = $currentLine = rand(0, PHP_INT_MAX)
 			)
-			->if($this->testedInstance->handleEvent(atoum\test::exception, $test))
+			->if(
+				$this->testedInstance->setReflectionMethodFactory(function() use ($method) {
+						return $method;
+					}
+				),
+				$this->testedInstance->handleEvent(atoum\test::exception, $test)
+			)
 			->then
 				->invoking->__toString
-					->shouldReturn->string->isEqualTo('  ✘  ' . $currentMethod . PHP_EOL . '     Exception: ' . $firstLine . PHP_EOL . '     ' . $secondLine . PHP_EOL . '       ' . $thirdLine . PHP_EOL)
+					->shouldReturn->string->isEqualTo('  ✘  ' . $currentMethod . ' (./' . $currentFile . ':' . $currentLine . ')' . PHP_EOL . '     Exception: ' . $firstLine . PHP_EOL . '     ' . $secondLine . PHP_EOL . '       ' . $thirdLine . PHP_EOL)
 		;
 	}
 
@@ -60,17 +70,26 @@ class exception extends specs\units
 					)
 				),
 				$this->calling($test)->getScore = $score,
+				$this->mockGenerator->orphanize('__construct'),
+				$method = new \mock\reflectionMethod(),
+				$this->calling($method)->getFileName = $currentFile = uniqid(),
+				$this->calling($method)->getStartLine = $currentLine = rand(0, PHP_INT_MAX),
 				$prompt = new \mock\mageekguy\atoum\cli\prompt(),
 				$colorizer = new \mock\mageekguy\atoum\cli\colorizer()
 			)
 			->if(
-				$this->newTestedInstance($colorizer, $prompt),
+				$this->newTestedInstance($colorizer, $colorizer, $prompt),
+				$this->testedInstance->setReflectionMethodFactory(function() use ($method) {
+						return $method;
+					}
+				),
 				$this->testedInstance->handleEvent(atoum\test::exception, $test)
 			)
 			->when($this->testedInstance->__toString())
 			->then
 				->mock($colorizer)
 					->call('colorize')->withArguments($currentMethod)->once()
+					->call('colorize')->withArguments('(./' . $currentFile . ':' . $currentLine . ')')->once()
 					->call('colorize')->withArguments('Exception: ')->once()
 					->call('colorize')->withArguments($secondLine)->once()
 				->mock($prompt)
