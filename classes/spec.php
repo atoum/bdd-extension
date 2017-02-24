@@ -3,12 +3,7 @@
 namespace mageekguy\atoum\bdd;
 
 use mageekguy\atoum;
-use mageekguy\atoum\adapter;
-use mageekguy\atoum\annotations;
-use mageekguy\atoum\asserter;
 use mageekguy\atoum\bdd\asserters;
-use mageekguy\atoum\mock;
-use mageekguy\atoum\php;
 use mageekguy\atoum\test;
 
 class spec extends atoum\test

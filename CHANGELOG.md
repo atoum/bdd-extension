@@ -1,3 +1,7 @@
+# 2.1.0 - 2017-02-24
+
+* [#5](https://github.com/atoum/bdd-extension/pull/5) Support atoum 3.x ([@jubianchi])
+
 # 2.0.2 - 2015-10-30
 
 * Nothing new, just a typo
@@ -20,3 +24,5 @@
 * Handle example names containing uppercase abbreviations
 
 # 1.0.0 - 2014-12-01
+
+[@jubianchi]: https://github.com/jubianchi
