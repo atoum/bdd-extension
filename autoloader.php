@@ -11,5 +11,3 @@ atoum\autoloader::get()
 	->addClassAlias('mageekguy\atoum\spec', __NAMESPACE__ . '\\spec')
 	->addDirectory(__NAMESPACE__, __DIR__ . DIRECTORY_SEPARATOR . 'classes');
 ;
-
-require_once __DIR__ . '/specs/autoloader.php';
