@@ -10,7 +10,7 @@ use
 	mageekguy\atoum\exceptions
 ;
 
-class void extends report\fields\spec\event
+class blank extends report\fields\spec\event
 {
 
 	public function __construct(colorizer $colorizer = null, $detailColorizer = null, prompt $prompt = null)

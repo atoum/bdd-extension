@@ -10,7 +10,7 @@ use
 	mageekguy\atoum\bdd\specs
 ;
 
-class void extends specs\units
+class blank extends specs\units
 {
 	public function should_be_a_spec_field()
 	{
