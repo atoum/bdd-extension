@@ -1,20 +1,20 @@
 <?php
 
-namespace mageekguy\atoum\bdd\specs\units\report\fields\runner\result;
+namespace atoum\atoum\bdd\specs\units\report\fields\runner\result;
 
 use
-	mageekguy\atoum,
-	mageekguy\atoum\bdd,
-	mageekguy\atoum\report\fields\test,
-	mageekguy\atoum\report\fields\runner,
-	mageekguy\atoum\bdd\specs
+	atoum\atoum,
+	atoum\atoum\bdd,
+	atoum\atoum\report\fields\test,
+	atoum\atoum\report\fields\runner,
+	atoum\atoum\bdd\specs
 ;
 
 class cli extends specs\units
 {
 	public function should_be_a_runner_field()
 	{
-		$this->testedClass->isSubClassOf('mageekguy\atoum\report\fields\runner\result');
+		$this->testedClass->isSubClassOf('atoum\atoum\report\fields\runner\result');
 	}
 
 	public function should_construct()
@@ -46,8 +46,8 @@ class cli extends specs\units
 		$this
 			->given(
 				$runner = new atoum\runner(),
-				$colorizer = new \mock\mageekguy\atoum\cli\colorizer(),
-				$prompt = new \mock\mageekguy\atoum\cli\prompt()
+				$colorizer = new \mock\atoum\atoum\cli\colorizer(),
+				$prompt = new \mock\atoum\atoum\cli\prompt()
 			)
 			->if(
 				$this->testedInstance
@@ -68,8 +68,8 @@ class cli extends specs\units
 	{
 		$this
 			->given(
-				$runner = new \mock\mageekguy\atoum\runner(),
-				$score = new \mock\mageekguy\atoum\runner\score(),
+				$runner = new \mock\atoum\atoum\runner(),
+				$score = new \mock\atoum\atoum\runner\score(),
 				$this->calling($runner)->getScore = $score,
 				$this->calling($runner)->getTestNumber = 1,
 				$this->calling($runner)->getTestMethodNumber = 1,
@@ -87,10 +87,10 @@ class cli extends specs\units
 	{
 		$this
 			->given(
-				$runner = new \mock\mageekguy\atoum\runner(),
-				$colorizer = new \mock\mageekguy\atoum\cli\colorizer(),
-				$prompt = new \mock\mageekguy\atoum\cli\prompt(),
-				$score = new \mock\mageekguy\atoum\runner\score(),
+				$runner = new \mock\atoum\atoum\runner(),
+				$colorizer = new \mock\atoum\atoum\cli\colorizer(),
+				$prompt = new \mock\atoum\atoum\cli\prompt(),
+				$score = new \mock\atoum\atoum\runner\score(),
 				$this->calling($runner)->getScore = $score,
 				$this->calling($runner)->getTestNumber = 1,
 				$this->calling($runner)->getTestMethodNumber = 1,

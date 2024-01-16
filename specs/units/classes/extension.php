@@ -1,17 +1,17 @@
 <?php
 
-namespace mageekguy\atoum\bdd\specs\units;
+namespace atoum\atoum\bdd\specs\units;
 
 use
-	mageekguy\atoum,
-	mageekguy\atoum\bdd\specs
+	atoum\atoum,
+	atoum\atoum\bdd\specs
 ;
 
 class extension extends specs\units
 {
 	public function should_be_an_atoum_extension()
 	{
-		$this->testedClass->hasInterface('mageekguy\atoum\extension');
+		$this->testedClass->hasInterface('atoum\atoum\extension');
 	}
 
 	public function should_construct()
@@ -24,8 +24,8 @@ class extension extends specs\units
 		$this
 			->given(
 				$script = new atoum\scripts\runner(uniqid()),
-				$parser = new \mock\mageekguy\atoum\script\arguments\parser(),
-				$configurator = new \mock\mageekguy\atoum\configurator($script),
+				$parser = new \mock\atoum\atoum\script\arguments\parser(),
+				$configurator = new \mock\atoum\atoum\configurator($script),
 				$script->setArgumentsParser($parser),
 				$this->resetMock($parser)
 			)
@@ -55,7 +55,7 @@ class extension extends specs\units
 	public function should_use_provided_test()
 	{
 		$this
-			->given($test = new \mock\mageekguy\atoum\test())
+			->given($test = new \mock\atoum\atoum\test())
 			->then
 				->invoking->getTest
 					->shouldReturn->variable->isNull()
@@ -69,7 +69,7 @@ class extension extends specs\units
 	public function should_gracefully_ignore_events()
 	{
 		$this
-			->invoking->handleEvent(uniqid(), new \mock\mageekguy\atoum\observable())
+			->invoking->handleEvent(uniqid(), new \mock\atoum\atoum\observable())
 				->shouldReturn->object->isTestedInstance
 		;
 	}

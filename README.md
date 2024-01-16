@@ -37,7 +37,7 @@ Enable the extension using atoum configuration file:
 
 require_once __DIR__ . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
 
-use mageekguy\atoum\bdd;
+use atoum\atoum\bdd;
 
 $extension = new bdd\extension($script);
 $runner->addExtension($extension);

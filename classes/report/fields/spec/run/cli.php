@@ -1,10 +1,10 @@
 <?php
 
-namespace mageekguy\atoum\bdd\report\fields\spec\run;
+namespace atoum\atoum\bdd\report\fields\spec\run;
 
 use
-	mageekguy\atoum,
-	mageekguy\atoum\report
+	atoum\atoum,
+	atoum\atoum\report
 ;
 
 class cli extends report\fields\test\run\cli

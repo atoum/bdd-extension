@@ -1,17 +1,17 @@
 <?php
 
-namespace mageekguy\atoum\bdd\specs\units;
+namespace atoum\atoum\bdd\specs\units;
 
 use
-	mageekguy\atoum,
-	mageekguy\atoum\bdd\specs
+	atoum\atoum,
+	atoum\atoum\bdd\specs
 ;
 
 class spec extends specs\units
 {
 	public function should_be_a_test()
 	{
-		$this->testedClass->isSubClassOf('mageekguy\atoum\test');
+		$this->testedClass->isSubClassOf('atoum\atoum\test');
 	}
 
 	public function should_construct()
@@ -22,7 +22,7 @@ class spec extends specs\units
 	public function should_set_invoking_assertion_handler()
 	{
 		$this
-			->given($manager = new \mock\mageekguy\atoum\test\assertion\manager())
+			->given($manager = new \mock\atoum\atoum\test\assertion\manager())
 			->when($this->testedInstance->setAssertionManager($manager))
 			->then
 				->mock($manager)

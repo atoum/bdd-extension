@@ -1,20 +1,20 @@
 <?php
 
-namespace mageekguy\atoum\bdd\specs\units\report\fields\spec\run;
+namespace atoum\atoum\bdd\specs\units\report\fields\spec\run;
 
 use
-	mageekguy\atoum,
-	mageekguy\atoum\bdd,
-	mageekguy\atoum\report\fields\test,
-	mageekguy\atoum\report\fields\runner,
-	mageekguy\atoum\bdd\specs
+	atoum\atoum,
+	atoum\atoum\bdd,
+	atoum\atoum\report\fields\test,
+	atoum\atoum\report\fields\runner,
+	atoum\atoum\bdd\specs
 ;
 
 class cli extends specs\units
 {
 	public function should_be_a_cli_field()
 	{
-		$this->testedClass->isSubClassOf('mageekguy\atoum\report\fields\test\run\cli');
+		$this->testedClass->isSubClassOf('atoum\atoum\report\fields\test\run\cli');
 	}
 
 	public function should_construct()
@@ -26,7 +26,7 @@ class cli extends specs\units
 	{
 		$this
 			->given(
-				$test = new \mock\mageekguy\atoum\test(),
+				$test = new \mock\atoum\atoum\test(),
 				$this->calling($test)->getTestedClassName = $testedClassName = uniqid()
 			)
 			->if($this->testedInstance->handleEvent(atoum\test::runStart, $test))
@@ -40,10 +40,10 @@ class cli extends specs\units
 	{
 		$this
 			->given(
-				$test = new \mock\mageekguy\atoum\test(),
+				$test = new \mock\atoum\atoum\test(),
 				$this->calling($test)->getTestedClassName = $testedClassName = uniqid(),
-				$colorizer = new \mock\mageekguy\atoum\cli\colorizer(),
-				$prompt = new \mock\mageekguy\atoum\cli\prompt()
+				$colorizer = new \mock\atoum\atoum\cli\colorizer(),
+				$prompt = new \mock\atoum\atoum\cli\prompt()
 			)
 			->if(
 				$this->testedInstance

@@ -1,17 +1,18 @@
 <?php
 
-namespace mageekguy\atoum\bdd\report\fields\spec\event;
+namespace atoum\atoum\bdd\report\fields\spec\event;
 
 use
-	mageekguy\atoum\test,
-	mageekguy\atoum\cli\colorizer,
-	mageekguy\atoum\cli\prompt,
-	mageekguy\atoum\bdd\report,
-	mageekguy\atoum\exceptions
+	atoum\atoum\test,
+	atoum\atoum\cli\colorizer,
+	atoum\atoum\cli\prompt,
+	atoum\atoum\bdd\report,
+	atoum\atoum\exceptions
 ;
 
 class uncompleted extends report\fields\spec\event
 {
+    protected $prompt = null;
 
 	public function __construct(prompt $prompt = null)
 	{

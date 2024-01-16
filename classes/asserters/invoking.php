@@ -1,11 +1,11 @@
 <?php
 
-namespace mageekguy\atoum\bdd\asserters;
+namespace atoum\atoum\bdd\asserters;
 
-use mageekguy\atoum;
-use mageekguy\atoum\asserter;
-use mageekguy\atoum\exceptions;
-use mageekguy\atoum\asserters;
+use atoum\atoum;
+use atoum\atoum\asserter;
+use atoum\atoum\exceptions;
+use atoum\atoum\asserters;
 
 class invoking extends atoum\asserter
 {

@@ -1,17 +1,17 @@
 <?php
 
-namespace mageekguy\atoum\bdd\specs\units\asserters;
+namespace atoum\atoum\bdd\specs\units\asserters;
 
 use
-	mageekguy\atoum,
-	mageekguy\atoum\bdd\specs
+	atoum\atoum,
+	atoum\atoum\bdd\specs
 ;
 
 class invoking extends specs\units
 {
 	public function should_be_an_atoum_asserter()
 	{
-		$this->testedClass->isSubClassOf('mageekguy\atoum\asserter');
+		$this->testedClass->isSubClassOf('atoum\atoum\asserter');
 	}
 
 	public function should_construct()
@@ -23,8 +23,8 @@ class invoking extends specs\units
 	{
 		$this
 			->given(
-				$test = new \mock\mageekguy\atoum\test(),
-				$this->calling($test)->getTestedClassName = 'mageekguy\atoum\test'
+				$test = new \mock\atoum\atoum\test(),
+				$this->calling($test)->getTestedClassName = 'atoum\atoum\test'
 			)
 			->if($this->newTestedInstance)
 			->then
@@ -41,9 +41,9 @@ class invoking extends specs\units
 	{
 		$this
 			->given(
-				$phpClass = new \mock\mageekguy\atoum\asserters\phpClass(),
-				$test = new \mock\mageekguy\atoum\test(),
-				$this->calling($test)->getTestedClassName = $testedClassName = 'mageekguy\atoum\test'
+				$phpClass = new \mock\atoum\atoum\asserters\phpClass(),
+				$test = new \mock\atoum\atoum\test(),
+				$this->calling($test)->getTestedClassName = $testedClassName = 'atoum\atoum\test'
 			)
 			->if(
 				$this->newTestedInstance(null, $phpClass),
@@ -51,7 +51,7 @@ class invoking extends specs\units
 			)
 			->then
 				->invoking('setMethod', $method = uniqid())
-					->shouldThrow('mageekguy\atoum\asserter\exception')
+					->shouldThrow('atoum\atoum\asserter\exception')
 						->hasMessage(sprintf('%s::%s() does not exist', $testedClassName, $method))
 					->mock($phpClass)
 						->call('hasMethod')->withArguments($method)->once()
@@ -67,8 +67,8 @@ class invoking extends specs\units
 	{
 		$this
 			->given(
-				$phpClass = new \mock\mageekguy\atoum\asserters\phpClass(),
-				$test = new \mock\mageekguy\atoum\test(),
+				$phpClass = new \mock\atoum\atoum\asserters\phpClass(),
+				$test = new \mock\atoum\atoum\test(),
 				$object = new \mock\dummy(),
 				$object->getMockController()->disableMethodChecking(),
 				$method = uniqid('A'),
@@ -96,8 +96,8 @@ class invoking extends specs\units
 	{
 		$this
 			->given(
-				$phpClass = new \mock\mageekguy\atoum\asserters\phpClass(),
-				$test = new \mock\mageekguy\atoum\test(),
+				$phpClass = new \mock\atoum\atoum\asserters\phpClass(),
+				$test = new \mock\atoum\atoum\test(),
 				$object = new \mock\dummy(),
 				$object->getMockController()->disableMethodChecking(),
 				$method = uniqid('A'),
@@ -123,7 +123,7 @@ class invoking extends specs\units
 			->if($this->testedInstance->setInstance($object))
 			->then
 				->invoking('returns', uniqid())
-					->shouldThrow('mageekguy\atoum\asserter\exception')
+					->shouldThrow('atoum\atoum\asserter\exception')
 		;
 	}
 
@@ -132,8 +132,8 @@ class invoking extends specs\units
 		$this
 			->given(
 				$generator = new atoum\asserter\generator(),
-				$phpClass = new \mock\mageekguy\atoum\asserters\phpClass($generator),
-				$test = new \mock\mageekguy\atoum\test(),
+				$phpClass = new \mock\atoum\atoum\asserters\phpClass($generator),
+				$test = new \mock\atoum\atoum\test(),
 				$object = new \mock\dummy(),
 				$object->getMockController()->disableMethodChecking(),
 				$method = uniqid('A'),

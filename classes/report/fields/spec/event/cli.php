@@ -1,11 +1,11 @@
 <?php
 
-namespace mageekguy\atoum\bdd\report\fields\spec\event;
+namespace atoum\atoum\bdd\report\fields\spec\event;
 
 use
-	mageekguy\atoum\test,
-	mageekguy\atoum\bdd\report,
-	mageekguy\atoum\exceptions
+	atoum\atoum\test,
+	atoum\atoum\bdd\report,
+	atoum\atoum\exceptions
 ;
 
 class cli extends report\fields\spec\event
