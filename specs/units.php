@@ -1,8 +1,8 @@
 <?php
 
-namespace mageekguy\atoum\bdd\specs;
+namespace atoum\atoum\bdd\specs;
 
-use mageekguy\atoum;
+use atoum\atoum;
 
 class units extends atoum\spec
 {

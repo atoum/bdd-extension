@@ -1,20 +1,20 @@
 <?php
 
-namespace mageekguy\atoum\bdd\specs\units\report\fields\spec\event;
+namespace atoum\atoum\bdd\specs\units\report\fields\spec\event;
 
 use
-	mageekguy\atoum,
-	mageekguy\atoum\bdd,
-	mageekguy\atoum\report\fields\test,
-	mageekguy\atoum\report\fields\runner,
-	mageekguy\atoum\bdd\specs
+	atoum\atoum,
+	atoum\atoum\bdd,
+	atoum\atoum\report\fields\test,
+	atoum\atoum\report\fields\runner,
+	atoum\atoum\bdd\specs
 ;
 
 class success extends specs\units
 {
 	public function should_be_a_spec_field()
 	{
-		$this->testedClass->isSubClassOf('mageekguy\atoum\bdd\report\fields\spec\event');
+		$this->testedClass->isSubClassOf('atoum\atoum\bdd\report\fields\spec\event');
 	}
 
 	public function should_construct()
@@ -26,8 +26,8 @@ class success extends specs\units
 	{
 		$this
 			->given(
-				$score = new \mock\mageekguy\atoum\score(),
-				$test = new \mock\mageekguy\atoum\test(),
+				$score = new \mock\atoum\atoum\score(),
+				$test = new \mock\atoum\atoum\test(),
 				$this->calling($test)->getCurrentMethod = $currentMethod = uniqid(),
 				$this->calling($test)->getScore = $score,
 				$this->mockGenerator->orphanize('__construct'),
@@ -52,16 +52,16 @@ class success extends specs\units
 	{
 		$this
 			->given(
-				$score = new \mock\mageekguy\atoum\score(),
-				$test = new \mock\mageekguy\atoum\test(),
+				$score = new \mock\atoum\atoum\score(),
+				$test = new \mock\atoum\atoum\test(),
 				$this->calling($test)->getCurrentMethod = $currentMethod = uniqid(),
 				$this->calling($test)->getScore = $score,
 				$this->mockGenerator->orphanize('__construct'),
 				$method = new \mock\reflectionMethod(),
 				$this->calling($method)->getFileName = $currentFile = uniqid(),
 				$this->calling($method)->getStartLine = $currentLine = rand(0, PHP_INT_MAX),
-				$prompt = new \mock\mageekguy\atoum\cli\prompt(),
-				$colorizer = new \mock\mageekguy\atoum\cli\colorizer()
+				$prompt = new \mock\atoum\atoum\cli\prompt(),
+				$colorizer = new \mock\atoum\atoum\cli\colorizer()
 			)
 			->if(
 				$this->newTestedInstance($colorizer, $colorizer, $prompt),

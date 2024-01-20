@@ -1,12 +1,12 @@
 <?php
 
-namespace mageekguy\atoum\bdd\report\fields\runner\result;
+namespace atoum\atoum\bdd\report\fields\runner\result;
 
 use
-	mageekguy\atoum,
-	mageekguy\atoum\cli\prompt,
-	mageekguy\atoum\cli\colorizer,
-	mageekguy\atoum\report\fields
+	atoum\atoum,
+	atoum\atoum\cli\prompt,
+	atoum\atoum\cli\colorizer,
+	atoum\atoum\report\fields
 ;
 
 class cli extends fields\runner\result

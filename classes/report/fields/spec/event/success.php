@@ -1,17 +1,21 @@
 <?php
 
-namespace mageekguy\atoum\bdd\report\fields\spec\event;
+namespace atoum\atoum\bdd\report\fields\spec\event;
 
 use
-	mageekguy\atoum\cli\colorizer,
-	mageekguy\atoum\cli\prompt,
-	mageekguy\atoum\test,
-	mageekguy\atoum\bdd\report,
-	mageekguy\atoum\exceptions
+	atoum\atoum\cli\colorizer,
+	atoum\atoum\cli\prompt,
+	atoum\atoum\test,
+	atoum\atoum\bdd\report,
+	atoum\atoum\exceptions
 ;
 
 class success extends report\fields\spec\event
 {
+    protected $colorizer = null;
+    protected $detailColorizer = null;
+    protected $prompt = null;
+
 	public function __construct(colorizer $colorizer = null, $detailColorizer = null, prompt $prompt = null)
 	{
 		parent::__construct();

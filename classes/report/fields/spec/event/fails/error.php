@@ -1,12 +1,12 @@
 <?php
 
-namespace mageekguy\atoum\bdd\report\fields\spec\event\fails;
+namespace atoum\atoum\bdd\report\fields\spec\event\fails;
 
 use
-	mageekguy\atoum\test,
-	mageekguy\atoum\cli,
-	mageekguy\atoum\bdd\report,
-	mageekguy\atoum\exceptions
+	atoum\atoum\test,
+	atoum\atoum\cli,
+	atoum\atoum\bdd\report,
+	atoum\atoum\exceptions
 ;
 
 class error extends report\fields\spec\event\fails

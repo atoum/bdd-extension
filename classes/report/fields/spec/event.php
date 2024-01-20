@@ -1,12 +1,12 @@
 <?php
 
-namespace mageekguy\atoum\bdd\report\fields\spec;
+namespace atoum\atoum\bdd\report\fields\spec;
 
-use mageekguy\atoum\fs\path;
+use atoum\atoum\fs\path;
 use
-	mageekguy\atoum\test,
-	mageekguy\atoum\report,
-	mageekguy\atoum\exceptions
+	atoum\atoum\test,
+	atoum\atoum\report,
+	atoum\atoum\exceptions
 ;
 
 abstract class event extends report\fields\test\event

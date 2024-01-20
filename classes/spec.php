@@ -1,10 +1,10 @@
 <?php
 
-namespace mageekguy\atoum\bdd;
+namespace atoum\atoum\bdd;
 
-use mageekguy\atoum;
-use mageekguy\atoum\bdd\asserters;
-use mageekguy\atoum\test;
+use atoum\atoum;
+use atoum\atoum\bdd\asserters;
+use atoum\atoum\test;
 
 class spec extends atoum\test
 {
@@ -50,15 +50,11 @@ class spec extends atoum\test
 
 	public function beforeTestMethod($testMethod)
 	{
-		parent::beforeTestMethod($testMethod);
-
 		$this->beforeExample($testMethod);
 	}
 
 	public function afterTestMethod($testMethod)
 	{
-		parent::afterTestMethod($testMethod);
-
 		$this->afterExample($testMethod);
 	}
 

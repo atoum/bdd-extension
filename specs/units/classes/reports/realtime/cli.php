@@ -1,22 +1,22 @@
 <?php
 
-namespace mageekguy\atoum\bdd\specs\units\reports\realtime;
+namespace atoum\atoum\bdd\specs\units\reports\realtime;
 
 use
-	mageekguy\atoum,
-	mageekguy\atoum\bdd,
-	mageekguy\atoum\cli\prompt,
-	mageekguy\atoum\cli\colorizer,
-	mageekguy\atoum\report\fields\test,
-	mageekguy\atoum\report\fields\runner,
-	mageekguy\atoum\bdd\specs
+	atoum\atoum,
+	atoum\atoum\bdd,
+	atoum\atoum\cli\prompt,
+	atoum\atoum\cli\colorizer,
+	atoum\atoum\report\fields\test,
+	atoum\atoum\report\fields\runner,
+	atoum\atoum\bdd\specs
 ;
 
 class cli extends specs\units
 {
 	public function should_be_a_realtime_report()
 	{
-		$this->testedClass->isSubClassOf('mageekguy\atoum\reports\realtime');
+		$this->testedClass->isSubClassOf('atoum\atoum\reports\realtime');
 	}
 
 	public function should_construct()
